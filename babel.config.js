@@ -14,10 +14,11 @@ module.exports = {
         root: ['./src'],
         alias: {
           assets: './src/assets',
+          constants: './src/constants',
           components: './src/components',
           controllers: './src/controllers',
           navigation: './src/navigation',
-          screens: './src/srcreens',
+          screens: './src/screens',
         },
       },
     ],

@@ -3,7 +3,7 @@ const { getDefaultConfig } = require('metro-config');
 
 module.exports = (async () => {
   const {
-    resolver: {sourceExts, assetExts},
+    resolver: { sourceExts, assetExts },
   } = await getDefaultConfig();
   return {
     transformer: {
@@ -12,7 +12,7 @@ module.exports = (async () => {
           experimentalImportSupport: false,
           inlineRequires: false,
         },
-      }0),
+      }),
       babelTransformerPath: require.resolve('react-native-svg-transformer'),
     },
     resolver: {
