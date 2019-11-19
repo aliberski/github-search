@@ -19,6 +19,7 @@ module.exports = {
           controllers: './src/controllers',
           navigation: './src/navigation',
           screens: './src/screens',
+          translation: './src/translation',
         },
       },
     ],

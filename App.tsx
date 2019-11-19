@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import 'translation/index';
 
 import AppNavigator from 'navigation/AppNavigator';
 
