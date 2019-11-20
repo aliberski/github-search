@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { getI18n } from 'react-i18next';
 
+import { INavigationOptions } from 'constants/types';
 import routes from 'navigation/routes';
 import { IProps } from './types';
 import style from './style';
@@ -20,8 +21,10 @@ const AuthScreen = (props: IProps) => {
   );
 };
 
-AuthScreen.navigationOptions = {
-  title: getI18n().t('Auth.title'),
-};
+AuthScreen.navigationOptions = ({
+  screenProps: { i18n },
+}: INavigationOptions) => ({
+  title: i18n().t('Auth.title'),
+});
 
 export default AuthScreen;
