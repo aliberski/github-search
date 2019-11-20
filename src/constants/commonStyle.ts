@@ -10,8 +10,9 @@ export const COLOR = {
 };
 
 export const SPACING = {
-  small: 10,
-  primary: 15,
+  small: 5,
+  primary: 10,
+  big: 20,
 };
 
 export const FONT_SIZE = {

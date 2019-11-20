@@ -11,7 +11,7 @@ import style from './style';
 
 const AuthScreen = (props: IProps) => {
   return (
-    <ScreenWrapper style={style.container}>
+    <ScreenWrapper>
       <Button
         onPress={() => {
           props.navigation.navigate(routes.HOME);

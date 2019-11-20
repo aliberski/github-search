@@ -5,7 +5,10 @@ import { IStyle } from './types';
 export default StyleSheet.create<IStyle>({
   container: {
     flex: 1,
-    padding: SPACING.primary,
     backgroundColor: COLOR.background,
+  },
+  content: {
+    flex: 1,
+    padding: SPACING.primary,
   },
 });
