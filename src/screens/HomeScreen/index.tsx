@@ -1,13 +1,19 @@
 // route: HOME
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import ScreenWrapper from 'components/ScreenWrapper';
 
 import { INavigationOptions } from 'constants/types';
 import { IProps } from './types';
 import style from './style';
 
 const HomeScreen = (props: IProps) => {
-  return <View style={style.container}></View>;
+  return (
+    <ScreenWrapper style={style.container}>
+      <Text>HomeScreen</Text>
+    </ScreenWrapper>
+  );
 };
 
 HomeScreen.navigationOptions = ({
