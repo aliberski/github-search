@@ -5,6 +5,7 @@ import {
   SPACING,
   BORDER_RADIUS,
   BORDER_WIDTH,
+  shadowStyle,
 } from 'constants/commonStyle';
 import { IStyle } from './types';
 
@@ -17,11 +18,19 @@ export default StyleSheet.create<IStyle>({
     borderWidth: BORDER_WIDTH.primary,
     borderColor: COLOR.border,
   },
+  containerHeader: {
+    ...shadowStyle,
+  },
   cell: {
     width: 0,
     flexGrow: 1,
     borderRightColor: COLOR.border,
     borderRightWidth: 1,
+    justifyContent: 'center',
+  },
+  headerTouchable: {
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   text: {

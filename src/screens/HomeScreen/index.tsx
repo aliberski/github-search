@@ -4,18 +4,27 @@ import { useTranslation } from 'react-i18next';
 
 import ScreenWrapper from 'components/ScreenWrapper';
 import SearchListItem from 'components/SearchList/SearchListItem';
+import SearchInput from 'components/SearchInput';
+import Divider from 'components/Divider';
 
 import { INavigationOptions } from 'constants/types';
 import { getHeaderData } from './helpers';
+import style from './style';
 import { IProps } from './types';
 
 const HomeScreen = (props: IProps) => {
   const { t } = useTranslation();
   const headerData = getHeaderData(t);
-  console.log('headerData', headerData);
 
   return (
     <ScreenWrapper>
+      <SearchInput
+        onSearch={(value: string) => {
+          console.log('onSearch', value);
+        }}
+        placeholder={t('Home.inputPlaceholder')}
+      />
+      <Divider style={style.divider} double={true} />
       <SearchListItem
         items={headerData}
         onSortPress={(key: string) => {
@@ -23,6 +32,7 @@ const HomeScreen = (props: IProps) => {
         }}
         isHeader={true}
       />
+      <Divider style={style.divider} />
       <SearchListItem
         items={[
           {
@@ -43,7 +53,7 @@ const HomeScreen = (props: IProps) => {
           },
           {
             key: 'createdAt',
-            value: '2016-09-24',
+            value: '2016.09.24',
           },
         ]}
       />
@@ -67,7 +77,7 @@ const HomeScreen = (props: IProps) => {
           },
           {
             key: 'createdAt',
-            value: '2016-09-24',
+            value: '2016.09.24',
           },
         ]}
       />

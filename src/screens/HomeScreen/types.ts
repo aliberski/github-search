@@ -5,4 +5,5 @@ export interface IProps extends INavigation {}
 
 export interface IStyle {
   container: ViewStyle;
+  divider: ViewStyle;
 }

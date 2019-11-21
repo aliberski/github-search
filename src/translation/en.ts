@@ -4,12 +4,13 @@ export default {
   },
   Home: {
     title: 'Github Search',
+    inputPlaceholder: 'Search Github repo by title...',
   },
   SearchListHeader: {
     id: 'ID',
-    title: 'Repo Title',
+    title: 'Title',
     owner: 'Owner',
     stars: 'Stars',
-    createdAt: 'Created at',
+    createdAt: 'Created\nat',
   },
 };

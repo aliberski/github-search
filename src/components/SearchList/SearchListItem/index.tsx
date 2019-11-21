@@ -1,14 +1,16 @@
 import React, { memo } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import { BORDER_WIDTH } from 'constants/commonStyle';
+import { IconSort } from 'assets/svg';
+
+import { BORDER_WIDTH, ICON_SIZE, COLOR } from 'constants/commonStyle';
 import { ListDataType } from 'components/SearchList/types';
 import { IProps, IItem } from './types';
 import style from './style';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SearchListItem = (props: IProps) => {
   const { isHeader } = props;
+  const borderWidth = isHeader ? BORDER_WIDTH.big : BORDER_WIDTH.primary;
 
   const renderText = (value: string) => {
     const fontWeight = isHeader ? 'bold' : 'normal';
@@ -24,17 +26,23 @@ const SearchListItem = (props: IProps) => {
 
     const cellStyle = [
       style.cell,
-      { borderRightWidth: isLast ? 0 : BORDER_WIDTH.primary },
+      { borderRightWidth: isLast ? 0 : borderWidth },
     ];
 
     if (isHeader) {
       return (
         <View key={key} style={cellStyle}>
           <TouchableOpacity
+            style={style.headerTouchable}
             onPress={() => {
               onSortPress && onSortPress(key);
             }}>
             {renderText(value)}
+            <IconSort
+              width={ICON_SIZE.small}
+              height={ICON_SIZE.small}
+              fill={COLOR.font}
+            />
           </TouchableOpacity>
         </View>
       );
@@ -55,7 +63,13 @@ const SearchListItem = (props: IProps) => {
     });
   };
 
-  return <View style={style.container}>{renderItems()}</View>;
+  const containerStyle = [
+    style.container,
+    isHeader && style.containerHeader,
+    { borderWidth },
+  ];
+
+  return <View style={containerStyle}>{renderItems()}</View>;
 };
 
 export default memo(SearchListItem);
