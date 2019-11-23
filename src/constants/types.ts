@@ -5,6 +5,8 @@ export interface INavigation {
   navigation: NavigationScreenProp<any>;
 }
 
+export type T = (text: string) => string;
+
 export interface IScreenProps {
   i18n: typeof getI18n;
 }
