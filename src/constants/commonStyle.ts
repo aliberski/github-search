@@ -32,6 +32,7 @@ export const BORDER_RADIUS = {
 export const ICON_SIZE = {
   small: 8,
   primary: 15,
+  big: 70,
 };
 
 export const defaultTextStyle = {

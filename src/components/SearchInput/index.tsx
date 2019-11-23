@@ -8,16 +8,14 @@ import { COLOR, ICON_SIZE } from 'constants/commonStyle';
 import { IProps } from './types';
 import style from './style';
 
-const SEARCH_TIMEOUT = 1000; // ms
-
 const SearchInput = (props: IProps) => {
   const [text, setText] = useState<string>('');
-  const { disabled, placeholder, onSearch } = props;
+  const { disabled, placeholder, onSearch, searchTimeout } = props;
 
   const debounceCallback = useCallback(
     debounce((value: string) => {
       onSearch(value);
-    }, SEARCH_TIMEOUT),
+    }, searchTimeout),
     [],
   );
 
@@ -52,5 +50,9 @@ const SearchInput = (props: IProps) => {
     </View>
   );
 };
+
+SearchInput.defaultProps = {
+  searchTimeout: 500,
+} as Partial<IProps>;
 
 export default memo(SearchInput);

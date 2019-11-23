@@ -13,4 +13,7 @@ export default {
     stars: 'Stars',
     createdAt: 'Created\nat',
   },
+  SearchListEmpty: {
+    title: 'No search results',
+  },
 };
