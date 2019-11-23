@@ -16,4 +16,7 @@ export default {
   SearchListEmpty: {
     title: 'No search results',
   },
+  Filters: {
+    title: 'Rows per page:',
+  },
 };

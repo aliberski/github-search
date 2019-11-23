@@ -7,7 +7,9 @@ import SearchListItem from 'components/SearchList/SearchListItem';
 import SearchInput from 'components/SearchInput';
 import SearchList from 'components/SearchList';
 import Divider from 'components/Divider';
+import Filters from 'components/Filters';
 
+import { SortType } from 'components/Filters/types';
 import { INavigationOptions } from 'constants/types';
 import { getHeaderData } from './helpers';
 import style from './style';
@@ -107,6 +109,8 @@ const HomeScreen = (props: IProps) => {
       {renderInput()}
       {renderHeader()}
       <SearchList data={data} isEmpty={isEmpty} />
+      <Divider style={style.divider} double={true} />
+      <Filters rowsPerPageValue={5} onRowsPerPagePress={() => {}} />
     </ScreenWrapper>
   );
 };
