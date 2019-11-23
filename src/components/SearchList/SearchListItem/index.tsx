@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { IconSort } from 'assets/svg';
 
+import { ListDataType } from 'controllers/Search/types';
 import { BORDER_WIDTH, ICON_SIZE, COLOR } from 'constants/commonStyle';
-import { ListDataType } from 'components/SearchList/types';
-import { IProps, IItem } from './types';
+import { IProps } from './types';
 import style from './style';
 
 const SearchListItem = (props: IProps) => {
@@ -31,7 +31,7 @@ const SearchListItem = (props: IProps) => {
 
     if (isHeader) {
       return (
-        <View key={key} style={cellStyle}>
+        <View key={`${key}-${value}`} style={cellStyle}>
           <TouchableOpacity
             style={style.headerTouchable}
             onPress={() => {
@@ -57,8 +57,10 @@ const SearchListItem = (props: IProps) => {
 
   const renderItems = () => {
     const { items } = props;
-    return items.map(({ key, value }: IItem, i: number) => {
-      const isLast = items.length === i + 1;
+    const keys: any[] = Object.keys(items);
+    return keys.map((key: ListDataType, i: number) => {
+      const isLast = keys.length === i + 1;
+      const value = items[key];
       return renderCell(key, value, isLast);
     });
   };

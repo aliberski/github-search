@@ -1,12 +1,22 @@
 import React, { memo } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, ActivityIndicator, View } from 'react-native';
 
 import SearchListItem from './SearchListItem';
 import SearchListEmpty from './SearchListEmpty';
 
+import { COLOR } from 'constants/commonStyle';
 import { IProps, IListItem } from './types';
+import style from './style';
 
-const SearchList = ({ data, isEmpty }: IProps) => {
+const SearchList = ({ data, isEmpty, loading }: IProps) => {
+  if (loading) {
+    return (
+      <View style={style.loader}>
+        <ActivityIndicator size="large" color={COLOR.font} />
+      </View>
+    );
+  }
+
   if (isEmpty) {
     return <SearchListEmpty />;
   }
@@ -19,9 +29,14 @@ const SearchList = ({ data, isEmpty }: IProps) => {
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={item => `${item[0].value}`}
+      keyExtractor={item => `${item.id}`}
     />
   );
 };
+
+SearchList.defaultProps = {
+  isEmpty: true,
+  loading: false,
+} as Partial<IProps>;
 
 export default memo(SearchList);

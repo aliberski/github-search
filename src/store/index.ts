@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 
-export interface IStoreState {}
+import search from 'controllers/Search/reducer';
+import { ISearchStoreState } from 'controllers/Search/types';
 
-const testReducer = () => null; // TODO: remove this
+export interface IStoreState {
+  search: ISearchStoreState;
+}
 
-export default combineReducers<IStoreState>({ testReducer });
+export default combineReducers<IStoreState>({ search });

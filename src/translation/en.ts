@@ -8,7 +8,7 @@ export default {
   },
   SearchListHeader: {
     id: 'ID',
-    title: 'Title',
+    name: 'Title',
     owner: 'Owner',
     stars: 'Stars',
     createdAt: 'Created\nat',
