@@ -6,11 +6,11 @@ import HomeScreen from 'screens/HomeScreen/index';
 import routes from 'navigation/routes';
 
 const AuthStack = createStackNavigator({
-  [routes.AUTH]: AuthScreen,
+  [routes.AUTH]: { screen: AuthScreen, path: 'auth' },
 });
 
 const MainStack = createStackNavigator({
-  [routes.HOME]: HomeScreen,
+  [routes.HOME]: { screen: HomeScreen, path: 'home' },
 });
 
 const SwitchNavigator = createSwitchNavigator({

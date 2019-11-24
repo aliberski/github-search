@@ -1,6 +1,7 @@
 export default {
   Auth: {
     title: 'Authorization',
+    buttonGithub: 'Log in with GitHub',
   },
   Home: {
     title: 'Github Search',

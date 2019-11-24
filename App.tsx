@@ -17,7 +17,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <AppNavigator screenProps={{ i18n: getI18n } as IScreenProps} />
+        <AppNavigator
+          uriPrefix="githubsearch://"
+          screenProps={{ i18n: getI18n } as IScreenProps}
+        />
       </PersistGate>
     </Provider>
   );

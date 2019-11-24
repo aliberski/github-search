@@ -1,4 +1,3 @@
-import { ViewStyle } from 'react-native';
 import { INavigation } from 'constants/types';
 import { ISearchResult } from 'controllers/Search/types';
 import { ISortTypePayload } from 'controllers/SearchParams/types';
@@ -15,8 +14,4 @@ export interface IProps extends INavigation {
   paginationPages: number;
   sortType: ISortTypePayload;
   setSortType: (sortType: ISortTypePayload) => void;
-}
-
-export interface IStyle {
-  container: ViewStyle;
 }
