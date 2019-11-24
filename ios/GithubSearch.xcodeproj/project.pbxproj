@@ -161,7 +161,6 @@
 				22675215DD6A78BDC619FDD3 /* Pods-GithubSearchTests.debug.xcconfig */,
 				3107C2B66F7383DB491B5C20 /* Pods-GithubSearchTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +307,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

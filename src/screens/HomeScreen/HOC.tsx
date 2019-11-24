@@ -1,11 +1,36 @@
-import React, { ReactType } from 'react';
-import { IProps } from './types';
+import { connect } from 'react-redux';
 
-export const withPaginationPages = (Component: ReactType) => (
-  props: IProps,
-) => {
-  const { data, rowsPerPage } = props;
-  const len = data && data.length;
-  const paginationPages = len > 0 ? Math.ceil(data.length / rowsPerPage) : 1;
-  return <Component {...props} paginationPages={paginationPages} />;
+import {
+  paginatedAndSortedDataSelector,
+  paginationPagesSelector,
+} from 'controllers/Search/selectors';
+import {
+  rowsPerPageSelector,
+  currentPageSelector,
+  sortTypeSelector,
+} from 'controllers/SearchParams/selectors';
+import searchActions from 'controllers/Search/actions';
+import searchParamsActions from 'controllers/SearchParams/actions';
+import { IStoreState } from 'store/index';
+
+const mapStateToProps = (state: IStoreState) => {
+  return {
+    data: paginatedAndSortedDataSelector(state),
+    loading: state.search.loading,
+    paginationPages: paginationPagesSelector(state),
+    currentPage: currentPageSelector(state),
+    rowsPerPage: rowsPerPageSelector(state),
+    sortType: sortTypeSelector(state),
+  };
+};
+
+const mapDispatchToProps = {
+  searchRequest: searchActions.searchRequest,
+  setCurrentPage: searchParamsActions.setCurrentPage,
+  setRowsPerPage: searchParamsActions.setRowsPerPage,
+  setSortType: searchParamsActions.setSortType,
+};
+
+export const withReduxData = (Component: any) => {
+  return connect(mapStateToProps, mapDispatchToProps)(Component);
 };

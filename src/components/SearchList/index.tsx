@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { FlatList, ActivityIndicator, View } from 'react-native';
 
 import SearchListItem from './SearchListItem';
@@ -39,4 +39,4 @@ SearchList.defaultProps = {
   loading: false,
 } as Partial<IProps>;
 
-export default memo(SearchList);
+export default SearchList;

@@ -5,6 +5,7 @@ import { ISortTypePayload } from 'controllers/SearchParams/types';
 
 export interface IProps extends INavigation {
   data: ISearchResult[];
+  fullData: ISearchResult[];
   searchRequest: (value: string) => void;
   loading: boolean;
   currentPage: number;

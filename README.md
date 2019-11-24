@@ -4,7 +4,7 @@
 
 ### Required
 
-- Render a list with rows containing "repository ID", "title", "owner", "stars" and "created at" timestamp
+- ~~Render a list with rows containing "repository ID", "title", "owner", "stars" and "created at" timestamp~~
 - Render an input element to [search for repositories](https://developer.github.com/v3/search/) by name
 - Cache the results of every search (or have a limit) - do not make an API request if the results are already stored
 - Do not fire requests as long as the user is typing - use throttle or debounce

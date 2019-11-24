@@ -6,6 +6,7 @@ import { IconSort } from 'assets/svg';
 import { SortOrder } from 'controllers/SearchParams/types';
 import { ListDataType } from 'controllers/Search/types';
 import { BORDER_WIDTH, ICON_SIZE, COLOR } from 'constants/commonStyle';
+import { formatDate } from './helpers';
 import { IProps } from './types';
 import style from './style';
 
@@ -57,9 +58,11 @@ const SearchListItem = (props: IProps) => {
       );
     }
 
+    const text = key === ListDataType.CREATED_AT ? formatDate(value) : value;
+
     return (
       <View key={key} style={cellStyle}>
-        {renderText(value)}
+        {renderText(text)}
       </View>
     );
   };
