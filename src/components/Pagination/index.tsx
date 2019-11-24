@@ -33,6 +33,7 @@ const Pagination = ({ pages, current, onSelect }: IProps) => {
     const textStyle = [style.text, selected && style.textSelected];
     return (
       <TouchableOpacity
+        key={num}
         disabled={selected}
         style={style.button}
         onPress={() => {

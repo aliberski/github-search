@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { IconSort } from 'assets/svg';
 
+import { SortOrder } from 'controllers/SearchParams/types';
 import { ListDataType } from 'controllers/Search/types';
 import { BORDER_WIDTH, ICON_SIZE, COLOR } from 'constants/commonStyle';
 import { IProps } from './types';
@@ -22,27 +23,35 @@ const SearchListItem = (props: IProps) => {
   };
 
   const renderCell = (key: ListDataType, value: string, isLast?: boolean) => {
-    const { onSortPress } = props;
-
     const cellStyle = [
       style.cell,
       { borderRightWidth: isLast ? 0 : borderWidth },
     ];
 
     if (isHeader) {
+      const { sortType, onSortPress } = props;
+      const isAsc = sortType && sortType.order === SortOrder.ASC;
+      const newOrder = isAsc ? SortOrder.DESC : SortOrder.ASC;
+      const iconStyle = isAsc ? {} : style.desc;
+      const displayArrow = sortType && sortType.type === key;
+
       return (
         <View key={`${key}-${value}`} style={cellStyle}>
           <TouchableOpacity
             style={style.headerTouchable}
             onPress={() => {
-              onSortPress && onSortPress(key);
+              onSortPress && onSortPress({ type: key, order: newOrder });
             }}>
             {renderText(value)}
-            <IconSort
-              width={ICON_SIZE.small}
-              height={ICON_SIZE.small}
-              fill={COLOR.font}
-            />
+            {displayArrow && (
+              <View style={iconStyle}>
+                <IconSort
+                  width={ICON_SIZE.small}
+                  height={ICON_SIZE.small}
+                  fill={COLOR.font}
+                />
+              </View>
+            )}
           </TouchableOpacity>
         </View>
       );

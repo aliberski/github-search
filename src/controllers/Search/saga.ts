@@ -1,13 +1,15 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import apiSearchRepositories from 'api/apiSearchRepositories';
-import { ActionTypes, searchActions } from './actions';
+import searchActions, { ActionTypes } from './actions';
 import { mapRepositoriesData } from './mappers';
 import { ISearchRequest } from './types';
 
+const LIMIT_SEARCH_RESULTS = 60;
+
 const searchRepositories = async (query: string) => {
   const { items } = await apiSearchRepositories({ q: query });
-  return mapRepositoriesData(items);
+  return mapRepositoriesData(items, LIMIT_SEARCH_RESULTS);
 };
 
 function* searchSaga(action: ISearchRequest) {

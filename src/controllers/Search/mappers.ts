@@ -11,7 +11,10 @@ const formatDate = (dateStr: string) => {
   return `${year}.${month}.${day}`;
 };
 
-export const mapRepositoriesData = (items: any[]): ISearchResult[] => {
+export const mapRepositoriesData = (
+  items: any[],
+  limit: number,
+): ISearchResult[] => {
   const results: any[] = items.map((item: any) => {
     if (!item || !item.id || !item.name) return;
     return {
@@ -22,5 +25,6 @@ export const mapRepositoriesData = (items: any[]): ISearchResult[] => {
       createdAt: formatDate(item.created_at),
     };
   });
-  return results.filter((item: any): ISearchResult[] => item);
+  const filtered = results.filter((item: any): ISearchResult[] => item);
+  return filtered.slice(0, limit);
 };

@@ -6,7 +6,7 @@ export enum ActionTypes {
   SEARCH_ERROR = 'SEARCH - error',
 }
 
-export const searchActions = {
+const searchActions = {
   searchRequest: (payload: string): ISearchRequest => ({
     type: ActionTypes.SEARCH_REQUEST,
     payload,
@@ -19,3 +19,5 @@ export const searchActions = {
     type: ActionTypes.SEARCH_ERROR,
   }),
 };
+
+export default searchActions;

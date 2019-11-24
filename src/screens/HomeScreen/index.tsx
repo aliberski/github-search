@@ -2,6 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import ScreenWrapper from 'components/ScreenWrapper';
 import SearchListItem from 'components/SearchList/SearchListItem';
@@ -11,11 +12,13 @@ import Divider from 'components/Divider';
 import Filters from 'components/Filters';
 import Pagination from 'components/Pagination';
 
-import { searchActions } from 'controllers/Search/actions';
+import { ISortTypePayload } from 'controllers/SearchParams/types';
+import searchActions from 'controllers/Search/actions';
+import searchParamsActions from 'controllers/SearchParams/actions';
 import { INavigationOptions } from 'constants/types';
 import { IStoreState } from 'store/index';
 import { getHeaderData } from './helpers';
-import style from './style';
+import { withPaginationPages } from './HOC';
 import { IProps } from './types';
 
 const SEARCH_TIMEOUT = 1000; //ms
@@ -23,7 +26,7 @@ const SEARCH_TIMEOUT = 1000; //ms
 const HomeScreen = (props: IProps) => {
   const { t } = useTranslation();
   const headerData = getHeaderData(t);
-  const { data, loading } = props;
+  const { data } = props;
 
   const isEmpty = !data || data.length === 0;
 
@@ -37,7 +40,7 @@ const HomeScreen = (props: IProps) => {
           }}
           placeholder={t('Home.inputPlaceholder')}
         />
-        <Divider style={style.divider} double={true} />
+        <Divider double={true} />
       </>
     );
   };
@@ -46,16 +49,46 @@ const HomeScreen = (props: IProps) => {
     if (isEmpty) {
       return null;
     }
+    const { sortType, setSortType } = props;
     return (
       <>
         <SearchListItem
           items={headerData}
-          onSortPress={(key: string) => {
-            // TODO: handle sorting
-          }}
+          sortType={sortType}
+          onSortPress={(sortType: ISortTypePayload) => setSortType(sortType)}
           isHeader={true}
         />
-        <Divider style={style.divider} />
+        <Divider />
+      </>
+    );
+  };
+
+  const renderPagination = () => {
+    if (isEmpty) {
+      return null;
+    }
+    const { currentPage, paginationPages, setCurrentPage } = props;
+    return (
+      <>
+        <Divider />
+        <Pagination
+          pages={paginationPages}
+          current={currentPage}
+          onSelect={(page: number) => setCurrentPage(page)}
+        />
+      </>
+    );
+  };
+
+  const renderFilters = () => {
+    const { rowsPerPage, setRowsPerPage } = props;
+    return (
+      <>
+        <Divider double={true} />
+        <Filters
+          rowsPerPageValue={rowsPerPage}
+          onRowsPerPagePress={(rows: number) => setRowsPerPage(rows)}
+        />
       </>
     );
   };
@@ -64,11 +97,9 @@ const HomeScreen = (props: IProps) => {
     <ScreenWrapper>
       {renderInput()}
       {renderHeader()}
-      <SearchList data={data} isEmpty={isEmpty} loading={loading} />
-      <Divider style={style.divider} />
-      <Pagination pages={5} current={1} onSelect={(value: number) => {}} />
-      <Divider style={style.divider} double={true} />
-      <Filters rowsPerPageValue={5} onRowsPerPagePress={() => {}} />
+      <SearchList data={data} isEmpty={isEmpty} loading={props.loading} />
+      {renderPagination()}
+      {renderFilters()}
     </ScreenWrapper>
   );
 };
@@ -79,13 +110,22 @@ HomeScreen.navigationOptions = ({
   title: i18n().t('Home.title'),
 });
 
-const mapStateToProps = ({ search }: IStoreState) => ({
+const mapStateToProps = ({ search, searchParams }: IStoreState) => ({
   data: search.results,
   loading: search.loading,
+  currentPage: searchParams.currentPage,
+  rowsPerPage: searchParams.rowsPerPage,
+  sortType: searchParams.sortType,
 });
 
 const mapDispatchToProps = {
   searchRequest: searchActions.searchRequest,
+  setCurrentPage: searchParamsActions.setCurrentPage,
+  setRowsPerPage: searchParamsActions.setRowsPerPage,
+  setSortType: searchParamsActions.setSortType,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withPaginationPages,
+)(HomeScreen);

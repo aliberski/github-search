@@ -16,7 +16,8 @@ export default StyleSheet.create<IStyle>({
     marginBottom: SPACING.primary,
   },
   button: {
-    padding: SPACING.small,
+    paddingVertical: SPACING.small,
+    paddingHorizontal: 3,
   },
   arrow: {
     padding: SPACING.primary,

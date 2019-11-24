@@ -41,4 +41,7 @@ export default StyleSheet.create<IStyle>({
     flexWrap: 'wrap',
     textAlign: 'center',
   },
+  desc: {
+    transform: [{ rotate: '180deg' }],
+  },
 });
