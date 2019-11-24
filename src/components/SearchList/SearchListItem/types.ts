@@ -1,5 +1,6 @@
 import { ViewStyle, TextStyle } from 'react-native';
-import { ListDataType } from 'components/SearchList/types';
+import { ISearchResult } from 'controllers/Search/types';
+import { ISortTypePayload } from 'controllers/SearchParams/types';
 
 export interface IStyle {
   container: ViewStyle;
@@ -7,15 +8,12 @@ export interface IStyle {
   cell: ViewStyle;
   headerTouchable: ViewStyle;
   text: TextStyle;
-}
-
-export interface IItem {
-  key: ListDataType;
-  value: string;
+  desc: ViewStyle;
 }
 
 export interface IProps {
-  items: IItem[];
-  onSortPress?: (key: ListDataType) => void;
+  items: ISearchResult;
+  onSortPress?: (sortType: ISortTypePayload) => void;
+  sortType?: ISortTypePayload;
   isHeader?: boolean;
 }

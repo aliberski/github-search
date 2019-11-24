@@ -1,5 +1,5 @@
 // route: HOME
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import ScreenWrapper from 'components/ScreenWrapper';
@@ -8,68 +8,29 @@ import SearchInput from 'components/SearchInput';
 import SearchList from 'components/SearchList';
 import Divider from 'components/Divider';
 import Filters from 'components/Filters';
+import Pagination from 'components/Pagination';
 
-import { SortType } from 'components/Filters/types';
+import { SPACING } from 'constants/commonStyle';
+import { withReduxData } from './HOC';
 import { INavigationOptions } from 'constants/types';
+import { ISortTypePayload } from 'controllers/SearchParams/types';
 import { getHeaderData } from './helpers';
-import style from './style';
 import { IProps } from './types';
 
 const SEARCH_TIMEOUT = 1000; //ms
 
-// TODO: delete data mock
-const data: any = [
-  [
-    {
-      key: 'id',
-      value: '69101782',
-    },
-    {
-      key: 'title',
-      value: 'react-native-fbads',
-    },
-    {
-      key: 'owner',
-      value: 'callstack-io',
-    },
-    {
-      key: 'stars',
-      value: '88',
-    },
-    {
-      key: 'createdAt',
-      value: '2016.09.24',
-    },
-  ],
-  [
-    {
-      key: 'id',
-      value: '123',
-    },
-    {
-      key: 'title',
-      value: 'react-native-123',
-    },
-    {
-      key: 'owner',
-      value: 'owner-123',
-    },
-    {
-      key: 'stars',
-      value: '123',
-    },
-    {
-      key: 'createdAt',
-      value: '1.1.1',
-    },
-  ],
-];
-
 const HomeScreen = (props: IProps) => {
   const { t } = useTranslation();
   const headerData = getHeaderData(t);
+  const { data, paginationPages, currentPage, setCurrentPage } = props;
 
   const isEmpty = !data || data.length === 0;
+
+  useEffect(() => {
+    if (paginationPages < currentPage) {
+      setCurrentPage(1);
+    }
+  }, [paginationPages]);
 
   const renderInput = () => {
     return (
@@ -77,11 +38,11 @@ const HomeScreen = (props: IProps) => {
         <SearchInput
           searchTimeout={SEARCH_TIMEOUT}
           onSearch={(value: string) => {
-            console.log('onSearch', value);
+            value && props.searchRequest(value);
           }}
           placeholder={t('Home.inputPlaceholder')}
         />
-        <Divider style={style.divider} double={true} />
+        <Divider double={true} />
       </>
     );
   };
@@ -90,16 +51,45 @@ const HomeScreen = (props: IProps) => {
     if (isEmpty) {
       return null;
     }
+    const { sortType, setSortType } = props;
     return (
       <>
         <SearchListItem
           items={headerData}
-          onSortPress={(key: string) => {
-            // TODO: handle sorting
-          }}
+          sortType={sortType}
+          onSortPress={(sortType: ISortTypePayload) => setSortType(sortType)}
           isHeader={true}
         />
-        <Divider style={style.divider} />
+        <Divider />
+      </>
+    );
+  };
+
+  const renderPagination = () => {
+    if (isEmpty) {
+      return null;
+    }
+    return (
+      <>
+        <Divider style={{ marginBottom: SPACING.small }} />
+        <Pagination
+          pages={paginationPages}
+          current={currentPage}
+          onSelect={(page: number) => setCurrentPage(page)}
+        />
+      </>
+    );
+  };
+
+  const renderFilters = () => {
+    const { rowsPerPage, setRowsPerPage } = props;
+    return (
+      <>
+        <Divider double={true} />
+        <Filters
+          rowsPerPageValue={rowsPerPage}
+          onRowsPerPagePress={(rows: number) => setRowsPerPage(rows)}
+        />
       </>
     );
   };
@@ -108,9 +98,9 @@ const HomeScreen = (props: IProps) => {
     <ScreenWrapper>
       {renderInput()}
       {renderHeader()}
-      <SearchList data={data} isEmpty={isEmpty} />
-      <Divider style={style.divider} double={true} />
-      <Filters rowsPerPageValue={5} onRowsPerPagePress={() => {}} />
+      <SearchList data={data} isEmpty={isEmpty} loading={props.loading} />
+      {renderPagination()}
+      {renderFilters()}
     </ScreenWrapper>
   );
 };
@@ -121,4 +111,4 @@ HomeScreen.navigationOptions = ({
   title: i18n().t('Home.title'),
 });
 
-export default HomeScreen;
+export default withReduxData(HomeScreen);

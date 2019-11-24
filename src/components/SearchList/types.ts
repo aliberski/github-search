@@ -1,16 +1,18 @@
-import { IItem } from 'components/SearchList/SearchListItem/types';
-
-export type ListDataType = 'id' | 'title' | 'owner' | 'stars' | 'createdAt';
+import { ViewStyle } from 'react-native';
+import { ISearchResult } from 'controllers/Search/types';
 
 export interface IProps {
-  data: IItem[][];
+  data: ISearchResult[];
   isEmpty: boolean;
+  loading: boolean;
 }
 
 export interface IListItem {
   index: number;
-  item: IItem[];
+  item: ISearchResult;
   separators: any;
 }
 
-export interface IStyle {}
+export interface IStyle {
+  loader: ViewStyle;
+}

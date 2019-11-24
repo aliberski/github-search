@@ -30,10 +30,10 @@ const Filters = (props: IProps) => {
   };
 
   return (
-    <View style={style.container}>
+    <>
       <Text style={style.title}>{t('Filters.title')}</Text>
       <View style={style.buttons}>{renderButtons()}</View>
-    </View>
+    </>
   );
 };
 

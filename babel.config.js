@@ -1,5 +1,8 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
+  presets: [
+    'module:metro-react-native-babel-preset',
+    'module:react-native-dotenv',
+  ],
   env: {
     production: {
       // NOTE: remove all console logs from production builds
@@ -13,6 +16,7 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
+          api: './src/api',
           assets: './src/assets',
           constants: './src/constants',
           components: './src/components',

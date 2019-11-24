@@ -4,8 +4,4 @@ import { IStyle } from './types';
 
 export default StyleSheet.create<IStyle>({
   container: {},
-  divider: {
-    marginBottom: SPACING.primary,
-    marginTop: 2,
-  },
 });

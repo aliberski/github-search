@@ -1,7 +1,14 @@
 import { combineReducers } from 'redux';
 
-export interface IStoreState {}
+import search from 'controllers/Search/reducer';
+import { ISearchStoreState } from 'controllers/Search/types';
 
-const testReducer = () => null; // TODO: remove this
+import searchParams from 'controllers/SearchParams/reducer';
+import { ISearchParamsStoreState } from 'controllers/SearchParams/types';
 
-export default combineReducers<IStoreState>({ testReducer });
+export interface IStoreState {
+  search: ISearchStoreState;
+  searchParams: ISearchParamsStoreState;
+}
+
+export default combineReducers<IStoreState>({ search, searchParams });

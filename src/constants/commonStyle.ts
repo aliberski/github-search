@@ -31,7 +31,7 @@ export const BORDER_RADIUS = {
 
 export const ICON_SIZE = {
   small: 8,
-  primary: 15,
+  primary: 20,
   big: 70,
 };
 
