@@ -16,15 +16,27 @@ export interface ISearchResult {
   [ListDataType.CREATED_AT]: string;
 }
 
+export interface ICachedResult {
+  query: string;
+  results: ISearchResult[];
+}
+
 export interface ISearchStoreState {
   loading: boolean;
   results: ISearchResult[];
   error: boolean;
+  cachedResults: ICachedResult[];
 }
+
+export type ICachedResultsPayload = ICachedResult;
 
 export type ISearchSuccessPayload = ISearchResult[];
 
-export type Actions = ISearchRequest | ISearchSuccess | ISearchError;
+export type Actions =
+  | ISearchRequest
+  | ISearchSuccess
+  | ISearchError
+  | ISaveCachedResults;
 
 export interface ISearchRequest {
   readonly type: ActionTypes.SEARCH_REQUEST;
@@ -38,4 +50,9 @@ export interface ISearchSuccess {
 
 export interface ISearchError {
   readonly type: ActionTypes.SEARCH_ERROR;
+}
+
+export interface ISaveCachedResults {
+  readonly type: ActionTypes.SAVE_CACHED_RESULTS;
+  payload: ICachedResultsPayload;
 }

@@ -10,6 +10,7 @@ import Divider from 'components/Divider';
 import Filters from 'components/Filters';
 import Pagination from 'components/Pagination';
 
+import { SPACING } from 'constants/commonStyle';
 import { withReduxData } from './HOC';
 import { INavigationOptions } from 'constants/types';
 import { ISortTypePayload } from 'controllers/SearchParams/types';
@@ -70,7 +71,7 @@ const HomeScreen = (props: IProps) => {
     }
     return (
       <>
-        <Divider />
+        <Divider style={{ marginBottom: SPACING.small }} />
         <Pagination
           pages={paginationPages}
           current={currentPage}

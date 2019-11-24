@@ -10,9 +10,6 @@ import {
 import { IStyle } from './types';
 
 export default StyleSheet.create<IStyle>({
-  container: {
-    paddingBottom: SPACING.primary,
-  },
   title: {
     ...defaultTextStyle,
     fontWeight: 'bold',

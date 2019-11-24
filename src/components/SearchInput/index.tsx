@@ -19,19 +19,15 @@ const SearchInput = (props: IProps) => {
     [],
   );
 
-  const onChange = (value: string) => {
-    setText(value);
-    debounceCallback(value);
-  };
-
   const onSubmit = () => {
-    onSearch(text);
+    debounceCallback(text);
   };
 
   return (
     <View style={style.container}>
       <TextInput
-        onChangeText={onChange}
+        onChangeText={setText}
+        onEndEditing={onSubmit}
         value={text}
         placeholder={placeholder}
         style={style.input}

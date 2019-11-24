@@ -13,7 +13,7 @@ export default StyleSheet.create<IStyle>({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: SPACING.primary,
+    marginBottom: SPACING.small,
   },
   button: {
     paddingVertical: SPACING.small,

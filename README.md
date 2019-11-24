@@ -5,12 +5,12 @@
 ### Required
 
 - ~~Render a list with rows containing "repository ID", "title", "owner", "stars" and "created at" timestamp~~
-- Render an input element to [search for repositories](https://developer.github.com/v3/search/) by name
-- Cache the results of every search (or have a limit) - do not make an API request if the results are already stored
-- Do not fire requests as long as the user is typing - use throttle or debounce
-- Implement pagination (locally, not by using API queries)
-- Add ability to control number of rows rendered per page (5 - default/10/15/20)
-- Implement ASC/DESC sorting by every field
+- ~~Render an input element to [search for repositories](https://developer.github.com/v3/search/) by name~~
+- ~~Cache the results of every search (or have a limit) - do not make an API request if the results are already stored~~ (NOTE: cache last 10 results)
+- ~~Do not fire requests as long as the user is typing - use throttle or debounce~~ (NOTE: event is fired in `onEndEditing` method and on search button press)
+- ~~Implement pagination (locally, not by using API queries)~~
+- ~~Add ability to control number of rows rendered per page (5 - default/10/15/20)~~
+- ~~Implement ASC/DESC sorting by every field~~
 - Add GitHub authentication mechanism (eg: _Log in with GitHub_ button) and highlight the row of repository of the logged-in user - please note that some users have 2FA enabled
 
 ### Optional (bonus points)

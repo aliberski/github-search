@@ -6,7 +6,6 @@ export interface IProps {
 }
 
 export interface IStyle {
-  container: ViewStyle;
   title: TextStyle;
   buttons: ViewStyle;
   button: ViewStyle;
