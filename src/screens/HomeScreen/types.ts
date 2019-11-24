@@ -1,6 +1,7 @@
 import { INavigation } from 'constants/types';
 import { ISearchResult } from 'controllers/Search/types';
 import { ISortTypePayload } from 'controllers/SearchParams/types';
+import { IRepoData } from 'controllers/User/types';
 
 export interface IProps extends INavigation {
   data: ISearchResult[];
@@ -14,4 +15,5 @@ export interface IProps extends INavigation {
   paginationPages: number;
   sortType: ISortTypePayload;
   setSortType: (sortType: ISortTypePayload) => void;
+  userRepos: IRepoData[];
 }

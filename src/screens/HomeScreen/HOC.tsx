@@ -21,6 +21,7 @@ const mapStateToProps = (state: IStoreState) => {
     currentPage: currentPageSelector(state),
     rowsPerPage: rowsPerPageSelector(state),
     sortType: sortTypeSelector(state),
+    userRepos: state.user.repos,
   };
 };
 

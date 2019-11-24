@@ -98,7 +98,12 @@ const HomeScreen = (props: IProps) => {
     <ScreenWrapper>
       {renderInput()}
       {renderHeader()}
-      <SearchList data={data} isEmpty={isEmpty} loading={props.loading} />
+      <SearchList
+        data={data}
+        isEmpty={isEmpty}
+        loading={props.loading}
+        userRepos={props.userRepos}
+      />
       {renderPagination()}
       {renderFilters()}
     </ScreenWrapper>
