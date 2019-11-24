@@ -9,6 +9,7 @@ import SearchInput from 'components/SearchInput';
 import SearchList from 'components/SearchList';
 import Divider from 'components/Divider';
 import Filters from 'components/Filters';
+import Pagination from 'components/Pagination';
 
 import { searchActions } from 'controllers/Search/actions';
 import { INavigationOptions } from 'constants/types';
@@ -64,6 +65,8 @@ const HomeScreen = (props: IProps) => {
       {renderInput()}
       {renderHeader()}
       <SearchList data={data} isEmpty={isEmpty} loading={loading} />
+      <Divider style={style.divider} />
+      <Pagination pages={5} current={1} onSelect={(value: number) => {}} />
       <Divider style={style.divider} double={true} />
       <Filters rowsPerPageValue={5} onRowsPerPagePress={() => {}} />
     </ScreenWrapper>
