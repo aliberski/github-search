@@ -3,8 +3,9 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { connect } from 'react-redux';
 
-import AuthScreen from 'screens/AuthScreen/index';
-import HomeScreen from 'screens/HomeScreen/index';
+import AuthScreen from 'screens/AuthScreen';
+import HomeScreen from 'screens/HomeScreen';
+import LoadingScreen from 'screens/LoadingScreen';
 
 import routes from 'navigation/routes';
 import { IProps } from './types';
@@ -15,10 +16,11 @@ const AuthStack = createStackNavigator({
 });
 
 const MainStack = createStackNavigator({
-  [routes.HOME]: { screen: HomeScreen, path: 'home' },
+  [routes.HOME]: HomeScreen,
 });
 
 const SwitchNavigator = createSwitchNavigator({
+  [routes.LOADING]: LoadingScreen,
   AuthStack,
   MainStack,
 });
@@ -26,7 +28,7 @@ const SwitchNavigator = createSwitchNavigator({
 const AppNavigator = (props: IProps) => {
   const { accessToken, ...restProps } = props;
   useEffect(() => {
-    // NOTE: handle auth navigation
+    // NOTE: handle auth navigation on `accessToken` change
     if (accessToken) {
       restProps.navigation.navigate(routes.HOME);
     }
