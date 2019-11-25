@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['search', 'searchParams'],
+  whitelist: ['search', 'searchParams', 'user'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

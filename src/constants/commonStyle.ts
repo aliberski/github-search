@@ -4,6 +4,7 @@ export const COLOR = {
   disabled: '#4f4f4f',
   background: '#f2f4f8',
   border: '#dedede',
+  highlight: 'rgba(0, 255, 0, 0.15)',
 
   font: '#000',
   font_light: '#fefefe',

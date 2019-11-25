@@ -18,6 +18,9 @@ export default StyleSheet.create<IStyle>({
     borderWidth: BORDER_WIDTH.primary,
     borderColor: COLOR.border,
   },
+  highlight: {
+    backgroundColor: COLOR.highlight,
+  },
   containerHeader: {
     ...shadowStyle,
   },

@@ -59,7 +59,6 @@ const SearchListItem = (props: IProps) => {
     }
 
     const text = key === ListDataType.CREATED_AT ? formatDate(value) : value;
-
     return (
       <View key={key} style={cellStyle}>
         {renderText(text)}
@@ -80,6 +79,7 @@ const SearchListItem = (props: IProps) => {
   const containerStyle = [
     style.container,
     isHeader && style.containerHeader,
+    props.highlight && style.highlight,
     { borderWidth },
   ];
 

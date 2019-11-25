@@ -7,8 +7,9 @@ import SearchListEmpty from './SearchListEmpty';
 import { COLOR } from 'constants/commonStyle';
 import { IProps, IListItem } from './types';
 import style from './style';
+import { IRepoData } from 'controllers/User/types';
 
-const SearchList = ({ data, isEmpty, loading }: IProps) => {
+const SearchList = ({ data, isEmpty, loading, userRepos }: IProps) => {
   if (loading) {
     return (
       <View style={style.loader}>
@@ -22,7 +23,9 @@ const SearchList = ({ data, isEmpty, loading }: IProps) => {
   }
 
   const renderItem = ({ item }: IListItem) => {
-    return <SearchListItem items={item} />;
+    const repoId = item.id;
+    const highlight = !!userRepos.find((repo: IRepoData) => repo.id === repoId);
+    return <SearchListItem items={item} highlight={highlight} />;
   };
 
   return (

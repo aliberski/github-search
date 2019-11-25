@@ -4,6 +4,7 @@ import { ISortTypePayload } from 'controllers/SearchParams/types';
 
 export interface IStyle {
   container: ViewStyle;
+  highlight: ViewStyle;
   containerHeader: ViewStyle;
   cell: ViewStyle;
   headerTouchable: ViewStyle;
@@ -16,4 +17,5 @@ export interface IProps {
   onSortPress?: (sortType: ISortTypePayload) => void;
   sortType?: ISortTypePayload;
   isHeader?: boolean;
+  highlight?: boolean;
 }
