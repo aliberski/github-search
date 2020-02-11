@@ -1,5 +1,7 @@
 # Github Search
 
+This is my recruitment task for a certain company :)
+
 ## Getting started
 
 Install dependencies:
@@ -86,7 +88,7 @@ yarn android
 
 ## Search
 
-All points mentioned in the [checklist](#Checklist) below are covered here. It contains:
+It contains:
 
 - ability to search repositories by name
 - ability to sort records by cretain field
@@ -95,48 +97,3 @@ All points mentioned in the [checklist](#Checklist) below are covered here. It c
 - cache previous search results (currently the application caches last 10 resutls, but it can be changed in `.env` file)
 
 Search event is fired in `onEndEditing` method and on search button press.
-
----
-
-## Final notes
-
-In my opinion the files structure I used is easy to maintain. I used it before many times and it worked very well.
-
-Also separating business logic and "dummy" components responsible for displaying data is a good approach, because we will not mix together parts of code which has different roles.
-
-Almost every part of code is typed using `TypeScript`. It will not allow to mistakenly pass a data with wrong format and will reduce number of bugs in the future.
-
-Controllers are self-sufficient. So adding a new functionallity to the app will require creating new controller, but in most cases we will not need to update any of existing ones. I think that it provides good maintainability.
-
----
-
-### One of my favourite quotes:
-
-> **"Talk is cheap. Show me the code."**
-> ~Linus Torvalds
-
----
-
-P.S. I really enjoyed this recruitment task 😃
-
----
-
-## Checklist
-
-### ~~Required~~
-
-- ~~Render a list with rows containing "repository ID", "title", "owner", "stars" and "created at" timestamp~~
-- ~~Render an input element to [search for repositories](https://developer.github.com/v3/search/) by name~~
-- ~~Cache the results of every search (or have a limit) - do not make an API request if the results are already stored~~
-- ~~Do not fire requests as long as the user is typing - use throttle or debounce~~
-- ~~Implement pagination (locally, not by using API queries)~~
-- ~~Add ability to control number of rows rendered per page (5 - default/10/15/20)~~
-- ~~Implement ASC/DESC sorting by every field~~
-- ~~Add GitHub authentication mechanism (eg: _Log in with GitHub_ button) and highlight the row of repository of the logged-in user - please note that some users have 2FA enabled~~
-
-### Optional (bonus points)
-
-- ~~Use linting and/or formatting tool - ESLint, Prettier (if you use [@callstack/eslint-config](https://github.com/callstack/eslint-config-callstack-io) you should be good to go)~~
-- ~~Use a type checker - Flow or Typescript~~
-- Write test suites - for example with Jest
-- ~~Write a good README to make reviewers lives easier~~
